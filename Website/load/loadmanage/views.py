@@ -1,5 +1,11 @@
 from django.shortcuts import render
-
+from django.http import HttpResponse
+from django.shortcuts import render
+from django.contrib.auth import authenticate, login
+from django.contrib.auth import logout
+from django.http import JsonResponse
+from django.shortcuts import render, get_object_or_404
+from django.db.models import Q
 
 # ----------------------------------------------------------------------------------------
 # mylogin_required : It is an authentication function used to check whether a user is logged in or not
@@ -18,5 +24,23 @@ def index(request):
 def indexnew(request):
     context = dict()
     return render(request, 'loadmanage/index.html', context)
+
+def login_user(request):
+	context = dict()
+    #if request.method == "POST":
+    #    username = request.POST['username']
+    #    password = request.POST['password']
+    #    user = authenticate(username=username, password=password)
+    #    if user is not None:
+    #        if user.is_active:
+    #            login(request, user)
+    #            return render(request, 'pages/index.html')
+    #        else:
+    #            return render(request, 'login.html', {'error_message': 'Your account has been disabled'})
+    #    else:
+    #        return render(request, 'login.html', {'error_message': 'Invalid login'})
+	return render(request, 'loadmanage/login.html',context)
+
+
 
 

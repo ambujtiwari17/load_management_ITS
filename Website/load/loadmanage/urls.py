@@ -10,6 +10,12 @@ urlpatterns = [
     #-----------------------------------------------------------------
     # Basic index page for the application
     url(r'^$', views.index , name='index'),
-    url(r'^pages/index.html$', views.indexnew , name='index'),
+    url(r'^index.html$', views.indexnew , name='index'),
+    url(r'^login.html$', views.login_user , name='login_user'),
+    #url(r'^register.html$', views.register , name='register'),
+    #url(r'^logout.html$', views.logout_user , name='logout_user'),'''
+    
+    
+    
     # Page to register a new user
 ]

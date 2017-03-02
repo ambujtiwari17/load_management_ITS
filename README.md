@@ -2,9 +2,11 @@
 Source code for load management (smart energy monitoring) app
 
 @Sahal - The back-end and front-end are standalone apps. Module-wise, the components are working fine. Need to integrate and build one single app.
-For viewing and running purposes, navigate to Website/back-end or Website/front-end/woo
+For viewing and running purposes, navigate to website/back-end or website/front-end/woo
 
 Directory structure (high-level)
+
+```
 .
 ├── API
 │   └── webapimodule
@@ -27,7 +29,8 @@ Directory structure (high-level)
 	├── manage.py
 	├── testsite
 	└── woo
-
+```
+	
 ############################################################################################
 
 Group members:

@@ -1,4 +1,4 @@
-# load_management_ITS
+# smartergy_ITS
 Source code for load management (smart energy monitoring) app
 
 @Sahal - The back-end and front-end are standalone apps. Module-wise, the components are working fine. Need to integrate and build one single app.

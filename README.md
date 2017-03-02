@@ -8,27 +8,73 @@ Directory structure (high-level)
 
 ```
 .
-├── API
+├── api
 │   └── webapimodule
 │       ├── app.py
 │       └── schema.sql
 ├── docs
 │   └── Load Management.pptx
-├── IOT
+├── iot
 │   ├── Current Sensor Readings.ino
 │   └── Energy Monitoring System.doc
 ├── README.md
-└── Website
+└── website
     ├── back-end
     │   ├── db.sqlite3
     │   ├── load
+    │   │   ├── admin.py
+    │   │   ├── admin.pyc
+    │   │   ├── forms.py
+    │   │   ├── forms.pyc
+    │   │   ├── __init__.py
+    │   │   ├── __init__.pyc
+    │   │   ├── models.py
+    │   │   ├── models.pyc
+    │   │   ├── templates
+    │   │   ├── tests.py
+    │   │   ├── urls.py
+    │   │   ├── urls.pyc
+    │   │   ├── views.py
+    │   │   └── views.pyc
     │   ├── loadmanage
+    │   │   ├── __init__.py
+    │   │   ├── __init__.pyc
+    │   │   ├── settings.py
+    │   │   ├── settings.pyc
+    │   │   ├── urls.py
+    │   │   ├── urls.pyc
+    │   │   ├── wsgi.py
+    │   │   └── wsgi.pyc
     │   └── manage.py
     └── front-end
-	├── db.sqlite3
-	├── manage.py
-	├── testsite
-	└── woo
+        ├── db.sqlite3
+        ├── manage.py
+        ├── testsite
+        │   ├── __init__.py
+        │   ├── __init__.pyc
+        │   ├── settings.py
+        │   ├── settings.pyc
+        │   ├── urls.py
+        │   ├── urls.pyc
+        │   ├── wsgi.py
+        │   └── wsgi.pyc
+        └── woo
+            ├── admin.py
+            ├── admin.pyc
+            ├── apps.py
+            ├── __init__.py
+            ├── __init__.pyc
+            ├── migrations
+            ├── models.py
+            ├── models.pyc
+            ├── static
+            ├── templates
+            ├── tests.py
+            ├── urls.py
+            ├── urls.pyc
+            ├── views.py
+            └── views.pyc
+
 ```
 	
 ############################################################################################

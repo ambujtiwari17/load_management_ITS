@@ -78,7 +78,7 @@ Directory structure (high-level)
 ```
 	
 ############################################################################################
-
+```
 Group members:
 
 Ayushi Anand, IS201401006
@@ -90,3 +90,4 @@ P. Monica, IS201411026
 M. Pruthvi Raj, IS201411028
 N. Rajasree, IS201411029
 P. Vanitha, IS201411034
+```

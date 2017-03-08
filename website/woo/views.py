@@ -6,8 +6,6 @@ from forms import Complaintform, Usageform ,Applianceform
 from django.shortcuts import render_to_response
 from .models import *
 
-
-
 # Create your views here.
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):

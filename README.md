@@ -1,8 +1,8 @@
 # smartergy_ITS
 Source code for load management (smart energy monitoring) app
 
-@Sahal - The back-end and front-end are standalone apps. Module-wise, the components are working fine. Need to integrate and build one single app.
-For viewing and running purposes, navigate to website/back-end or website/front-end/woo
+@Sahal - App integration is happening step by step please update the server you have made.
+For viewing and running purposes, navigate to website
 
 Directory structure (high-level)
 

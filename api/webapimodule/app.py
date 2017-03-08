@@ -12,14 +12,14 @@ app = Flask(__name__)
 
 mysql = MySQL()
 app.config['MYSQL_DATABASE_USER'] = 'root'
-app.config['MYSQL_DATABASE_PASSWORD'] = 'mysql'
+app.config['MYSQL_DATABASE_PASSWORD'] = '7004'
 app.config['MYSQL_DATABASE_DB'] = 'ITS'
 app.config['MYSQL_DATABASE_HOST'] = 'localhost'
 mysql.init_app(app)
 
 db = MySQLdb.connect(host="localhost",
                      user="root",
-                     passwd="mysql",
+                     passwd="7004",
                      db="ITS")
 
 cur = db.cursor()

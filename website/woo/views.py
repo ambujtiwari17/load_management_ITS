@@ -6,18 +6,16 @@ from forms import Complaintform, Usageform ,Applianceform
 from django.shortcuts import render_to_response
 from .models import *
 
+# Use : https://www.youtube.com/watch?v=p_n7g6tVloU for login tutorial
 # Create your views here.
+
 class HomePageView(TemplateView):
     def get(self, request, **kwargs):
         return render(request, 'index.html', context=None)
 
 def sel(request):
-    html="<h1>Select Appliance</h1><br>"
     all_appliances=ApplianceName.objects.all()
-    for app in all_appliances:
-        url="/load/"+str(app.id)+"/"
-        html +="<a href ="+url+">"+app.appliance+"</a><br>"
-    return HttpResponse(html)
+    return render(request,'sel.html',{'aa':all_appliances})
 
 def complain(request):
     if request.POST:
@@ -59,10 +57,11 @@ def use(request):
     return render_to_response('use.html',args)
 
 def details(request,appliance_id):
-    html="<h2>Details of appliance id:" + str(appliance_id) + "</h2><br>"
+    #html="<h2>Details of appliance id:" + str(appliance_id) + "</h2><br>"
     all_use=Usage.objects.filter(app_id=appliance_id)
-    html+="<table>"
-    for a in all_use:
-        html+="<tr><td>" + str(a.use) + "</td><td>" + str(a.recordtime) + "</td></tr>"
-    html+="</table>"
-    return HttpResponse(html)
+    # html+="<table>"
+    # for a in all_use:
+    #     html+="<tr><td>" + str(a.use) + "</td><td>" + str(a.recordtime) + "</td></tr>"
+    # html+="</table>"
+    # return HttpResponse(html)
+    return render(request,'details.html',{'a':appliance_id,'used':all_use})

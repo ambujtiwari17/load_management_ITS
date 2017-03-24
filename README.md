@@ -4,7 +4,7 @@ Source code for load management (smart energy monitoring) app
 @Sahal - App integration is happening step by step please update the server you have made.
 For viewing and running purposes, navigate to website
 
-Directory structure (high-level) - updated 09/03
+Directory structure (high-level) - updated 24/03
 
 ```
 .
@@ -19,6 +19,7 @@ Directory structure (high-level) - updated 09/03
 │   ├── Current Sensor Readings.ino
 │   └── Energy Monitoring System.doc
 ├── README.md
+├── requirements.txt
 └── website
     ├── db.sqlite3
     ├── manage.py

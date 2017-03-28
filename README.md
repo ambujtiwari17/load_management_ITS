@@ -73,3 +73,10 @@ To Do:
 2) Login/Logout
 3) Integrate with Hardware
 4) Custom User Table
+5) Graphs and chart updation
+
+Pages needed :
+1) Select Device
+2) Complaint
+
+Remove Other Pages !!

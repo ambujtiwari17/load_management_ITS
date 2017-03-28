@@ -67,4 +67,9 @@ P. Monica, IS201411026
 M. Pruthvi Raj, IS201411028
 N. Rajasree, IS201411029
 P. Vanitha, IS201411034
-```
+
+To Do:
+1) Update Documentation
+2) Login/Logout
+3) Integrate with Hardware
+4) Custom User Table

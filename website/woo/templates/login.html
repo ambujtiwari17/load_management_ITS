@@ -9,7 +9,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <title>Details</title>
+    <title>Login</title>
 
     <!-- Bootstrap -->
     <link href="{% static 'vendors/bootstrap/dist/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -34,19 +34,6 @@
             <div class="navbar nav_title" style="border: 0;">
               <a href="/load/dashboard/" class="site_title"><i class="fa fa-bolt"></i><span>&emsp;Smart Energy</span></a>
             </div>
-            <!-- sidebar menu -->
-            <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-              <div class="menu_section">
-                <br>
-                <br>
-                <ul class="nav side-menu" style="margin-top:50px">
-                  <li><a href='/load/sel'><i class="fa fa-desktop"></i> Select Device </a>
-                  </li>
-                  <li><a href='/load/complaint'><i class="fa fa-bar-chart-o"></i> Complaint </a>
-                  </li>
-                </ul>
-              </div>
-            </div>
           </div>
         </div>
 
@@ -56,14 +43,6 @@
             <nav>
               <div class="nav toggle">
                 <a id="menu_toggle"><i class="fa fa-bars"></i></a>
-              </div>
-              <div class="nav navbar-nav navbar-right">
-                  <h5>
-                    Welcome {{name}}
-                    (
-                    <a href='/load/logout'>Logout </a>
-                    )
-                  </h5>
               </div>
             </nav>
           </div>
@@ -79,24 +58,15 @@
                 </div>
              </div>
             </div>
-            {% block content %}
-              <h1>Details of appliance id:{{a}}</h2><br>
-              <canvas id="myChart" width="800" height="400"></canvas>
-              <table class="table table-striped">
-                <tr>
-                  <th> Usage </th>
-                  <th> Date Time </th>
-                </tr>
-                {% for u in used %}
-                  <tr>
-                    <td>{{u.use}}</td>
-                    <td>{{u.recordtime}}</td>
-                  </tr>
-                {% endfor %}
-              </table>
 
-              <!--  -->
-            {% endblock %}
+            <h1>Login</h1>
+            {% block content %}
+			<form method="post">
+    			{% csrf_token %}
+    			{{ form.as_p }}
+    			<button type="submit">Login</button>
+  			</form>
+            {% endblock %} 
             </div>
         </div>
       </div>
@@ -113,7 +83,6 @@
     <script src="{% static 'vendors/nprogress/nprogress.js' %}"></script>
     <!-- Chart.js -->
     <script src="{% static 'vendors/Chart.js/dist/Chart.min.js' %}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
     <!-- jQuery Sparklines -->
     <script src="{% static 'vendors/jquery-sparkline/dist/jquery.sparkline.min.js' %}"></script>
     <!-- morris.js -->
@@ -143,8 +112,6 @@
 
     <!-- Custom Theme Scripts -->
     <script src="{% static 'js/custom.min.js' %}"></script>
-
-    <script src="{% static 'js/main.js' %}"></script>
 
   </body>
 </html>

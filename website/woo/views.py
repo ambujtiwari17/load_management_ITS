@@ -5,31 +5,42 @@ from django.template.context_processors import csrf
 from forms import Complaintform, Usageform ,Applianceform
 from django.shortcuts import render_to_response
 from .models import *
+from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
-# Use : https://www.youtube.com/watch?v=p_n7g6tVloU for login tutorial
-# Create your views here.
 
-class HomePageView(TemplateView):
-    def get(self, request, **kwargs):
-        return render(request, 'index.html', context=None)
+@login_required(login_url='/load/')
+def HomePageView(request):
+    if request.user.username == 'Admin':
+        return HttpResponseRedirect('/admin')
+    else:
+        return HttpResponseRedirect('/load/sel')
 
+
+@login_required(login_url='/load/')
 def sel(request):
-    all_appliances=ApplianceName.objects.all()
-    return render(request,'sel.html',{'aa':all_appliances})
+    all_appliances=ApplianceName.objects.filter(user_id=request.user.id)
+    return render(request,'sel.html',{'aa':all_appliances,'name':request.user.username})
 
+@login_required(login_url='/load/')
 def complain(request):
     if request.POST:
         form=Complaintform(request.POST)
         if form.is_valid():
-            form.save()
+            complaint=form.save(commit=False)
+            complaint.user=request.user
+            complaint.save()
             return HttpResponseRedirect('/load/complaint')
     else:
         form=Complaintform()
     args={}
     args.update(csrf(request))
     args['form']=form
+    args['name']=request.user.username
+    args['com']=Complaint.objects.filter(user_id=request.user.id)
     return render_to_response('complain.html',args)
 
+@login_required(login_url='/load/')
 def appliance(request):
     if request.POST:
         form=Applianceform(request.POST)
@@ -43,6 +54,7 @@ def appliance(request):
     args['form']=form
     return render_to_response('appliance.html',args)
 
+@login_required(login_url='/load/')
 def use(request):
     if request.POST:
         form=Usageform(request.POST)
@@ -56,12 +68,7 @@ def use(request):
     args['form']=form
     return render_to_response('use.html',args)
 
+@login_required(login_url='/load/')
 def details(request,appliance_id):
-    #html="<h2>Details of appliance id:" + str(appliance_id) + "</h2><br>"
     all_use=Usage.objects.filter(app_id=appliance_id)
-    # html+="<table>"
-    # for a in all_use:
-    #     html+="<tr><td>" + str(a.use) + "</td><td>" + str(a.recordtime) + "</td></tr>"
-    # html+="</table>"
-    # return HttpResponse(html)
-    return render(request,'details.html',{'a':appliance_id,'used':all_use})
+    return render(request,'details.html',{'a':appliance_id,'used':all_use,'name':request.user.username})

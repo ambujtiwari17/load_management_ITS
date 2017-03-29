@@ -5,11 +5,9 @@ from django.utils.translation import ugettext_lazy as _
 class Complaintform(forms.ModelForm):
     class Meta:
         model=Complaint
-        fields = ['complaint_num', 'comp', 'status']
+        fields = ['comp']
         labels = {
-            'complaint_num': _('Complaint Number'),
             'comp': _('Complaint'),
-            'status': _('Status'),
         }
 
 class Usageform(forms.ModelForm):

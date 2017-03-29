@@ -120,6 +120,6 @@ def details(request,appliance_id):
 
 def adddata(request,aid,value):
     uid=ApplianceName.objects.get(pk=aid).user_id
-    new_usage=Usage.objects.create(user_id=uid,app_id=ApplianceName.objects.get(pk=aid),use=value,recordtime=datetime.now(timezone('Asia/Kolkata')))
+    new_usage=Usage.objects.create(user_id=uid,app_id=ApplianceName.objects.get(pk=aid),use=value,recordtime=datetime.now(t('Asia/Kolkata')))
     new_usage.save()
     return render(request,'add.html',{'a':aid,'u':uid,'value':value})

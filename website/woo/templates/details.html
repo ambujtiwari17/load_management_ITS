@@ -80,7 +80,8 @@
              </div>
             </div>
             {% block content %}
-              <h1>Details of appliance id:{{a}}</h2><br>
+              <h3>Details of appliance   :{{a}}</h3><br>
+              <h3>Details of today       :{{t}}</h3><br>
               <canvas id="myChart" width="800" height="400"></canvas>
               <table class="table table-striped">
                 <tr>
@@ -144,7 +145,43 @@
     <!-- Custom Theme Scripts -->
     <script src="{% static 'js/custom.min.js' %}"></script>
 
-    <script src="{% static 'js/main.js' %}"></script>
+    <script type="text/javascript">
+    const CHART = document.getElementById("myChart");
+    console.log('CHART');
+    let myChart = new Chart(CHART,{
+        type : 'line',
+        data : {
+        labels: ["12 am", "1 am", "2 am", "3 am", "4 am", "5 am", "6 am", "7 am", "8 am", "9 am", "10 am", "11 am", "12 pm", "1 pm", "2 pm", "3 pm", "4 pm", "5 pm", "6 pm", "7 pm", "8 pm", "9 pm", "10 pm", "11 pm"],
+        datasets: [
+            {
+                label: "Usage",
+                fill: true,
+                lineTension: 0.4,
+                backgroundColor: "rgba(75,192,192,0.4)",
+                borderColor: "rgba(75,192,192,1)",
+                borderCapStyle: 'butt',
+                borderDash: [],
+                borderDashOffset: 0.0,
+                borderJoinStyle: 'miter',
+                pointBorderColor: "rgba(75,192,192,1)",
+                pointBackgroundColor: "#fff",
+                pointBorderWidth: 1,
+                pointHoverRadius: 5,
+                pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                pointHoverBorderColor: "rgba(220,220,220,1)",
+                pointHoverBorderWidth: 2,
+                pointRadius: 5,
+                pointHitRadius: 10,
+                data: {{g}},
+                pointBorderColor: "#2A3F54",
+                pointBackgroundColor: "#2A3F54",
+                pointStyle: 'circle',
+                spanGaps: false,
+            }
+        ]
+    }
+    });
+    </script>
 
   </body>
 </html>

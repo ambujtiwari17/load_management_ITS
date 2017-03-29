@@ -8,9 +8,9 @@ from .models import *
 from django.contrib.auth.models import User
 from datetime import datetime
 from django.contrib.auth.decorators import login_required
-from pytz import timezone
-# import urllib2
-# import json
+import pytz 
+from pytz import timezone as t
+from datetime import datetime, date, time
 
 @login_required(login_url='/load/')
 def HomePageView(request):
@@ -24,24 +24,6 @@ def HomePageView(request):
 def sel(request):
     if request.user.username == 'Admin':
         return HttpResponseRedirect('/admin')
-    # response=urllib2.urlopen('http://shrave.pythonanywhere.com/sensors_json_all')
-    # data=json.load(response)
-    # for i in data:
-    #     u=i['Username']
-    #     a=i['DeviceName']
-    #     us=i['Value']
-    #     ti=i['Time']
-    #     uc=User.objects.filter(username=u)
-    #     uc=uc[0].pk
-    #     ac1=ApplianceName.objects.filter(appliance=a)
-    #     for a in ac1:
-    #         if a.user_id==uc:
-    #             ac=a.pk
-    #             break
-    #     us_check=Usage.objects.get(user_id=uc,app_id=ApplianceName.objects.get(pk=ac),use=us,recordtime=ti)
-    #     if not us_check:
-    #         new_usage=Usage.objects.create(user_id=uc,app_id=ApplianceName.objects.get(pk=ac),use=us,recordtime=ti)
-    #         new_usage.save()
     all_appliances=ApplianceName.objects.filter(user_id=request.user.id)
     return render(request,'sel.html',{'aa':all_appliances,'name':request.user.username})
 
@@ -104,7 +86,7 @@ def details(request,appliance_id):
     all_use=Usage.objects.filter(app_id=appliance_id)
     graph_use=[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
     labels=[]
-    today=datetime.now(timezone('Asia/Kolkata')).date()
+    today=datetime.now(t('Asia/Kolkata')).date()
     nt=[]
     app=ApplianceName.objects.get(id=appliance_id)
     app=str(app)
@@ -113,11 +95,26 @@ def details(request,appliance_id):
     for a in all_use:
         now=a.recordtime
         now_date=now.date()
-        if now_date==today:
-            now_time=now.time()
-            now_min=now_time.minute+30
-            now_hrs=now_time.hour+5+(now_min/60)
-            nt.append(now_hrs)
+        now_time=now.time()
+        now_min=now_time.minute+30
+        now_hrs=now_time.hour+5+(now_min/60)
+        now_day=now_date.day+now_hrs/24
+        number_of_days=31
+        if now_date.month in [4,6,9,11] :
+            number_of_days=30
+        if now_date.month==2:
+            if now_date.year%4==0 and now_date.year%100!=0:
+                number_of_days=29
+            else:
+                number_of_days=28
+        now_month=now_date.month+now_day/number_of_days
+        now_year=now_date.year+now_month/12
+        now_day=now_day%number_of_days
+        now_min=now_min%60
+        now_hrs=now_hrs%24
+        now_month=now_month%12
+        if now_day==today.day and now_month==today.month and now_year==today.year: 
+            nt.append(time(now_hrs,now_min,0))
             graph_use[now_hrs]+=a.use
     return render(request,'details.html',{'a':app,'used':all_use,'name':request.user.username,'g':graph_use,'l':labels,'t':today})
 
